@@ -6,10 +6,6 @@ from rest_framework.response import Response
 from .models import Subject
 #import status
 from rest_framework import status
-#import Acount
-from users.models import Account
-#import AcountSerializer
-from users.serializers.users_serializer import AcountSerializer
 
 def subject(request):
     if request.method == "GET":

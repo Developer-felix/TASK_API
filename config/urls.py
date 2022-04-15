@@ -21,3 +21,8 @@ urlpatterns = [
     path('api/v1', include('course.urls')),
     path('api/v1', include('subject.urls')),
 ]
+
+admin.site.site_header = "TASK API"
+admin.site.site_title = "TASK API"
+admin.site.index_title = "TASK API"
+

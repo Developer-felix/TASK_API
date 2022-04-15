@@ -2,11 +2,11 @@ from rest_framework import serializers, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .serializers.users_serializer import Acount
-from .models import Account
+from users.serializers.users_serializer import Acount
+from .models import Acount
 
 #import AccountSerializer
-from users.serializers.users_serializer import AcountSerializer
+from .serializers.users_serializer import AcountSerializer
 
 
 @api_view(["POST"])
@@ -30,7 +30,7 @@ def register(request):
 
 def update_user(request, pk):
     if request.method == "PUT":
-        user = Account.objects.get(pk=pk)
+        user = Acount.objects.get(pk=pk)
         serializer = AcountSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
