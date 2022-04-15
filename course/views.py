@@ -5,8 +5,10 @@ from rest_framework.response import Response
 from .models import Course
 #import status
 from rest_framework import status
+from rest_framework.decorators import api_view
 
 #create view for course using function based views CourseSerializer
+@api_view(['GET', 'POST'])
 def course(request):
     if request.method == "GET":
         courses = Course.objects.all()
@@ -26,6 +28,9 @@ def course(request):
                               "message": "cannot save course details","errors": serializer.errors, "data": None
                               },)
 
+    return Response({"success"})
+
+@api_view(["DELETE", "PUT"])
 def course_detail(request, pk):
     if request.method == "DELETE":
         course = Course.objects.get(pk=pk)

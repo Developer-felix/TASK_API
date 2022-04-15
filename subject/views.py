@@ -6,7 +6,11 @@ from rest_framework.response import Response
 from .models import Subject
 #import status
 from rest_framework import status
+#import api_view
+from rest_framework.decorators import api_view
 
+
+@api_view(['GET', 'POST'])
 def subject(request):
     if request.method == "GET":
         subjects = Subject.objects.all()
@@ -27,6 +31,7 @@ def subject(request):
     return Response({"success"})
 
 
+@api_view(["DELETE", "PUT"])
 def subject_details(request, pk):
     if request.method == "DELETE":
         subject = Subject.objects.get(pk=pk)

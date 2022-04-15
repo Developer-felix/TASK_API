@@ -4,15 +4,17 @@ from rest_framework.response import Response
 
 from users.serializers.users_serializer import Acount
 from .models import Acount
-
+from rest_framework.decorators import api_view
 #import AccountSerializer
 from .serializers.users_serializer import AcountSerializer
 
 
-@api_view(["POST"])
+@api_view(["POST","GET"])
 def register(request):
     if request.method == "GET":
-        pass
+        users = Acount.objects.all()
+        serializer = AcountSerializer(users, many=True)
+        return Response(serializer.data)
 
     elif request.method == "POST":
         serializer = AcountSerializer(data = request.data)
@@ -29,8 +31,15 @@ def register(request):
 
 
 #write a view to update user in the AcountSerializer details
-
+@api_view(["PUT","DELETE"])
 def update_user(request, pk):
+    if request.method == "DELETE":
+        user = Acount.objects.get(pk=pk)
+        user.delete()
+        return Response({"success": True, "errors": None, "status_code": 0,
+                         "status_message": "successfully deleted user details",
+                         "message": "You have successfully deleted user details"}, status=status.HTTP_201_CREATED)
+                         
     if request.method == "PUT":
         user = Acount.objects.get(pk=pk)
         serializer = AcountSerializer(user, data=request.data)
