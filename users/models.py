@@ -13,7 +13,7 @@ class Acount(AbstractUser):
     is_admin = models.BooleanField(default=False)
 
     is_staff = models.BooleanField(default=False)
-    is_teacher = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=False)
     is_manager = models.BooleanField(default=False)
 
     def __str__(self):

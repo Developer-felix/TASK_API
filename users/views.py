@@ -11,9 +11,11 @@ from .serializers.users_serializer import AcountSerializer
 
 @api_view(["POST"])
 def register(request):
-    if request.method == "POST":
-        data = request.data
-        serializer = Acount(data = data)
+    if request.method == "GET":
+        pass
+
+    elif request.method == "POST":
+        serializer = AcountSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"success": True, "errors": None, "status_code": 0,
