@@ -7,3 +7,4 @@ urlpatterns = [
     path('subject/', views.subject, name='create_user'),
     path('subject/<int:pk>/', views.subject_details, name='update_user'),
 ]
+i 

@@ -6,7 +6,7 @@ from django.db import models
 class Subject(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    subject = models.ForeignKey('course.Course', on_delete=models.CASCADE)
+    course = models.ForeignKey('course.Course', on_delete=models.CASCADE)
     added_by = models.ForeignKey('users.Acount', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
